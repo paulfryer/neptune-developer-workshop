@@ -84,8 +84,8 @@ gremlin> :remote console
   * Create an IAM role, add the role to your Neptune cluster, and create an S3 VPC endpoint
   * Prepare and run your load command, follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-data.html 
   * Download sample data:
-    * [air-routes-latest-nodes.csv](air-routes-latest-nodes.csv)
-    * [air-routes-latest-edges.csv](air-routes-latest-edges.csv)
+    * [air-routes-latest-nodes.csv](https://raw.githubusercontent.com/paulfryer/neptune-developer-workshop/master/Labs/Airports/air-routes-latest-nodes.csv)
+    * [air-routes-latest-edges.csv](https://raw.githubusercontent.com/paulfryer/neptune-developer-workshop/master/Labs/Airports/air-routes-latest-edges.csv)
   * Upload these files to a S3 bucket in your AWS account.
 ```
 curl -X POST \
