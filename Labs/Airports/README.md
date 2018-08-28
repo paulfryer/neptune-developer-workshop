@@ -1,32 +1,29 @@
 # Airports and Flights
 
-AWS Loft – Database Week
-
 Getting Started with Amazon Neptune Hands-on Lab
 
-1.	Create a new Cloud9 Development Environment
-•	See documentation at
-i.	https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html
-•	Choose EC2 for the Environment Type
-•	Choose t2.small for the Instance Type
-•	Under “Networking Settings” ensure you choose the same VPC that you will be launching Neptune in. Neptune can only be accessed via VPC so you need to launch the Cloud9 environment in the same VPC.
-•	Once the instance is created, click “Open IDE”
-•	Open a new terminal via Window > New Terminal (Alt + T)
+1. Create a new Cloud9 Development Environment
+⋅⋅* See documentation at https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html
+⋅⋅* Choose EC2 for the Environment Type
+⋅⋅* Choose t2.small for the Instance Type
+⋅⋅* Under “Networking Settings” ensure you choose the same VPC that you will be launching Neptune in. Neptune can only be accessed via VPC so you need to launch the Cloud9 environment in the same VPC.
+..* Once the instance is created, click “Open IDE”
+..* Open a new terminal via Window > New Terminal (Alt + T)
 
-•	Install java
+2. Install java
+```
 sudo yum install java-1.8.0-devel
 sudo /usr/sbin/alternatives –-config java
+```
+⋅⋅* When promopted, type the number for Java 8 (2)
 
-When promopted, type the number for Java 8 (2)
-
-•	Install Gremlin client
+4. Install Gremlin client
+```
 wget http://apache.claz.org/tinkerpop/3.3.3/apache-tinkerpop-gremlin-console-3.3.3-bin.zip 
-
 unzip apache-tinkerpop-gremlin-console-3.3.3-bin.zip 
-
 cd apache-tinkerpop-gremlin-console-3.3.3/bin
-
-•	Open the file: apache-tinkerpop-gremlin-console-3.3.3/bin/gremlin.sh and update the $JAVA_HOME value to point to your Java8 location, at line 69. Save your change.
+```
+5. Open the file: apache-tinkerpop-gremlin-console-3.3.3/bin/gremlin.sh and update the $JAVA_HOME value to point to your Java8 location, at line 69. Save your change.
 
 JAVA="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -server"
 
