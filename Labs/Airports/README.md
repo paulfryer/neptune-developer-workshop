@@ -96,6 +96,7 @@ curl -X POST \
     }'
 ```
 Example:
+```
 curl -X POST -H 'Content-Type: application/json' \
     http://darin-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
     { 
@@ -115,41 +116,46 @@ curl -X POST -H 'Content-Type: application/json' \
       "region" : "us-west-2", 
       "failOnError" : "FALSE"
 }'
+```
 
 Run this command twice, once for the source file air-routes-latest-nodes.csv and again for the source file air-routes-latest-edges.csv
 
 If you are using a Neptune instance in us-east-1 (N. Virginia), use the s3://db-week/ bucket. If you are using a Neptune instance in us-west-2 (Oregon), use the s3://db-week-west/ bucket.
 
-
-
- 
-6.	Run Gremlin Transversals
-•	Run Gremlin client
+13.	Run Gremlin Transversals
+  * Run Gremlin client
+```
 $ cd apache-tinkerpop-gremlin-console-3.3.3/bin
-
 $ ./gremlin.sh
-
+```
+14. Connect to remote Neptune instance.
+```
 gremlin> :remote connect tinkerpop.server conf/neptune-remote.yaml
 gremlin> :remote console
-
-
-•	Try some interesting traversals:
+```
+15. Try some interesting traversals:
 Routes between Cleveland and Shanghai with two stops
+```
 gremlin> g.V().has('code','CLE').out().out().out().has('code','SHA').path().by('code')
-
+```
 What information do I have on San Francisco airport?
+```
 g.V().has('airport','code','SFO').values()
-
+```
 How many airports are there in the graph?
+```
 g.V().hasLabel('airport').count()
-
+```
 How many routes are there in the graph?
+```
 g.V().hasLabel('airport').outE('route').count()
-
+```
 Where can I fly nonstop from Cleveland?
+```
 g.V().has('airport','code','CVG').out().values('code').fold()
-
+```
 Flights from London Heathrow (LHR) to airports in Canada
+```
 g.V().has('code','LHR').out('route').has('country','CA').values('code')
-
+```
 Find lots more at http://kelvinlawrence.net/book/Gremlin-Graph-Guide.html
