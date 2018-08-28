@@ -40,47 +40,50 @@ You should see a gremlin!
 Exit with CTRL-Z or :exit
 
 ## Create Neptune Instance
+
 7.	Create an Amazon Neptune db.r4.large instance
-•	See documentation at
-•	https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html
-•	Choose “No” high availability
-•	Choose a DB instance identifier
-•	Leave all Advanced Configuration options on their default settings and click to Launch DB instance
-•	Once the instance is created, find your Neptune endpoint name
-3.	Update Security Group to allow inner VPC traffic.
-•	Add a custom TCP Rule that allows port 8182 from the CIDR block of the VPC your Neptune instance is running in. This will allow any traffic from within your VPC (Cloud9) to talk to Neptune.
-•	Example:
-i.	Custom TCP Rule
-ii.	Protocol = TCP
-iii.	Port Range = 8182
-iv.	Source = 172.31.0.0/16 (or whatever your VPC CIDR is)
+  *	See documentation at	https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html
+  * Choose “No” high availability
+  * Choose a DB instance identifier
+  * Leave all Advanced Configuration options on their default settings and click to Launch DB instance
+  * Once the instance is created, find your Neptune endpoint name
+8. Update Security Group to allow inner VPC traffic.
+  * Add a custom TCP Rule that allows port 8182 from the CIDR block of the VPC your Neptune instance is running in. This will allow any traffic from within your VPC (Cloud9) to talk to Neptune.
+  * Example:
+    *	Custom TCP Rule
+    * Protocol = TCP
+    * Port Range = 8182
+    * Source = 172.31.0.0/16 (or whatever your VPC CIDR is)
 
-4.	Configure Gremlin to access Neptune
-•	Open your Cloud9 instance.
-•	Go to the Gremlin conf directory
-
+9.	Configure Gremlin to access Neptune
+  * Open your Cloud9 instance.
+  * Go to the Gremlin conf directory
+```
 cd ~/apache-tinkerpop-gremlin-console-3.3.3/conf
-
-•	Create a file named neptune-remote.yaml that contains:
-
+```
+  * Create a file named neptune-remote.yaml that contains:
+```
 hosts: [your-neptune-endpoint]
 port: 8182
 serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0, config: { serializeResultToString: true }}
-Of course, you should replace your-neptune-endpoint with your Neptune endpoint. Do leave the [square brackets] in the file!
-•	Run Gremlin and connect to your endpoint
+```
+  * Of course, you should replace your-neptune-endpoint with your Neptune endpoint. Do leave the [square brackets] in the file!
+10. Run Gremlin and connect to your endpoint
+```
 cd apache-tinkerpop-gremlin-console-3.3.3/bin
 ./gremlin.sh
-
+```
+11. Connect to remote Neptune istance.
+```
 gremlin> :remote connect tinkerpop.server conf/neptune-remote.yaml
 gremlin> :remote console
-
-5.	Load Data into Neptune
-•	Configure IAM to allow access
-Follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-IAM.html
-Create an IAM role, add the role to your Neptune cluster, and create an S3 VPC endpoint
-•	Prepare and run your load command
-Follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-data.html 
-
+```
+12.	Load Data into Neptune
+  * Configure IAM to allow access
+  * Follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-IAM.html
+  * Create an IAM role, add the role to your Neptune cluster, and create an S3 VPC endpoint
+  * Prepare and run your load command, follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-data.html 
+```
 curl -X POST \
     -H 'Content-Type: application/json' \
     http://your-neptune-endpoint:8182/loader -d '
@@ -91,7 +94,7 @@ curl -X POST \
       "region" : "region", 
       "failOnError" : "FALSE"
     }'
-
+```
 Example:
 curl -X POST -H 'Content-Type: application/json' \
     http://darin-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
