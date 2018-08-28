@@ -83,6 +83,10 @@ gremlin> :remote console
   * Follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-IAM.html
   * Create an IAM role, add the role to your Neptune cluster, and create an S3 VPC endpoint
   * Prepare and run your load command, follow documentation at https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-data.html 
+  * Download sample data:
+    * [air-routes-latest-nodes.csv](air-routes-latest-nodes.csv)
+    * [air-routes-latest-edges.csv](air-routes-latest-edges.csv)
+  * Upload these files to a S3 bucket in your AWS account.
 ```
 curl -X POST \
     -H 'Content-Type: application/json' \
@@ -98,9 +102,9 @@ curl -X POST \
 Example:
 ```
 curl -X POST -H 'Content-Type: application/json' \
-    http://darin-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
+    http://your-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
     { 
-      "source" : "s3://db-week-west/air-routes-latest-nodes.csv", 
+      "source" : "s3://your-s3-bucket-name-here/air-routes-latest-nodes.csv", 
       "format" : "csv",  
       "iamRoleArn" : "arn:aws:iam::011592212233:role/NeptuneLoadFromS3", 
       "region" : "us-west-2", 
@@ -108,9 +112,9 @@ curl -X POST -H 'Content-Type: application/json' \
 }'
 
 curl -X POST -H 'Content-Type: application/json' \
-    http://darin-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
+    http://your-neptune-cluster.cluster-cxpjiluhh0c9.us-west-2.neptune.amazonaws.com:8182/loader -d '
     { 
-      "source" : "s3://db-week-west/air-routes-latest-edges.csv", 
+      "source" : "s3://your-s3-bucket-name-here/air-routes-latest-edges.csv", 
       "format" : "csv",  
       "iamRoleArn" : "arn:aws:iam::011592212233:role/NeptuneLoadFromS3", 
       "region" : "us-west-2", 
@@ -119,8 +123,6 @@ curl -X POST -H 'Content-Type: application/json' \
 ```
 
 Run this command twice, once for the source file air-routes-latest-nodes.csv and again for the source file air-routes-latest-edges.csv
-
-If you are using a Neptune instance in us-east-1 (N. Virginia), use the s3://db-week/ bucket. If you are using a Neptune instance in us-west-2 (Oregon), use the s3://db-week-west/ bucket.
 
 13.	Run Gremlin Transversals
   * Run Gremlin client
