@@ -2,20 +2,22 @@
 
 Getting Started with Amazon Neptune Hands-on Lab
 
+## Create and Configure Cloud9 Instance
+
 1. Create a new Cloud9 Development Environment
-⋅⋅* See documentation at https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html
-⋅⋅* Choose EC2 for the Environment Type
-⋅⋅* Choose t2.small for the Instance Type
-⋅⋅* Under “Networking Settings” ensure you choose the same VPC that you will be launching Neptune in. Neptune can only be accessed via VPC so you need to launch the Cloud9 environment in the same VPC.
-..* Once the instance is created, click “Open IDE”
-..* Open a new terminal via Window > New Terminal (Alt + T)
+  * See documentation at https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html
+  * Choose EC2 for the Environment Type
+  * Choose t2.small for the Instance Type
+  * Under “Networking Settings” ensure you choose the same VPC that you will be launching Neptune in. Neptune can only be accessed via VPC so you need to launch the Cloud9 environment in the same VPC.
+  * Once the instance is created, click “Open IDE”
+  * Open a new terminal via Window > New Terminal (Alt + T)
 
 2. Install java
 ```
 sudo yum install java-1.8.0-devel
 sudo /usr/sbin/alternatives –-config java
 ```
-⋅⋅* When promopted, type the number for Java 8 (2)
+  * When promopted, type the number for Java 8 (2)
 
 4. Install Gremlin client
 ```
@@ -24,22 +26,21 @@ unzip apache-tinkerpop-gremlin-console-3.3.3-bin.zip
 cd apache-tinkerpop-gremlin-console-3.3.3/bin
 ```
 5. Open the file: apache-tinkerpop-gremlin-console-3.3.3/bin/gremlin.sh and update the $JAVA_HOME value to point to your Java8 location, at line 69. Save your change.
-
+```
 JAVA="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -server"
-
-•	Run the gremlin.sh script.
-
+```
+6. Run the gremlin.sh script.
+```
 ./gremlin.sh
-
+```
 You should see a gremlin!
          \,,,/
          (o o)
 -----oOOo-(3)-oOOo-----
 Exit with CTRL-Z or :exit
 
- 
-
-2.	Create an Amazon Neptune db.r4.large instance
+## Create Neptune Instance
+7.	Create an Amazon Neptune db.r4.large instance
 •	See documentation at
 •	https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html
 •	Choose “No” high availability
