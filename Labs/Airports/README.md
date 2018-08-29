@@ -27,7 +27,7 @@ cd apache-tinkerpop-gremlin-console-3.3.3/bin
 ```
 5. Open the file: apache-tinkerpop-gremlin-console-3.3.3/bin/gremlin.sh and update the $JAVA_HOME value to point to your Java8 location, at line 69. Save your change.
 ```
-JAVA="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -server"
+JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java -server"
 ```
 6. Run the gremlin.sh script.
 ```
