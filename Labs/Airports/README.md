@@ -15,7 +15,7 @@ Getting Started with Amazon Neptune Hands-on Lab
 2. Install java
 ```
 sudo yum install java-1.8.0-devel
-sudo /usr/sbin/alternatives –-config java
+sudo /usr/sbin/alternatives --config java
 ```
   * When promopted, type the number for Java 8 (2)
 
