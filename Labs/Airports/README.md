@@ -22,8 +22,8 @@ sudo /usr/sbin/alternatives --config java
 4. Install Gremlin client
 ```
 wget http://apache.claz.org/tinkerpop/3.3.4/apache-tinkerpop-gremlin-console-3.3.4-bin.zip
-unzip apache-tinkerpop-gremlin-console-3.3.3-bin.zip 
-cd apache-tinkerpop-gremlin-console-3.3.3/bin
+unzip apache-tinkerpop-gremlin-console-3.3.4-bin.zip 
+cd apache-tinkerpop-gremlin-console-3.3.4/bin
 ```
 5. Open the file: apache-tinkerpop-gremlin-console-3.3.3/bin/gremlin.sh and update the $JAVA_HOME value to point to your Java8 location, at line 69:
 ```
