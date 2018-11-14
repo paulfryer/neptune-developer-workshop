@@ -21,7 +21,7 @@ sudo /usr/sbin/alternatives --config java
 
 4. Install Gremlin client
 ```
-wget http://apache.claz.org/tinkerpop/3.3.3/apache-tinkerpop-gremlin-console-3.3.3-bin.zip 
+wget http://apache.claz.org/tinkerpop/3.3.4/apache-tinkerpop-gremlin-console-3.3.4-bin.zip
 unzip apache-tinkerpop-gremlin-console-3.3.3-bin.zip 
 cd apache-tinkerpop-gremlin-console-3.3.3/bin
 ```
